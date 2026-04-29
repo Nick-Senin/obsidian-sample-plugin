@@ -1,0 +1,194 @@
+summary: Process OBS recording for content generation
+description: >-
+  Transcribes audio, splits into posts, generates content, images, saves to
+  Baserow
+value:
+  modules:
+    - id: prepare_audio
+      value:
+        lock: '!inline prepare_audio.inline_script.lock'
+        type: rawscript
+        content: '!inline prepare_audio.inline_script.py'
+        language: python3
+        input_transforms:
+          posts:
+            expr: flow_input.posts
+            type: javascript
+          audio_file:
+            expr: flow_input.audio_file
+            type: javascript
+          recording_path:
+            expr: flow_input.recording_path
+            type: javascript
+      summary: Prepare audio
+    - id: transcribe
+      value:
+        path: f/transformations/transcriber/transcribe
+        type: script
+        input_transforms:
+          model:
+            type: static
+            value: whisper-medium
+          diarize:
+            type: static
+            value: true
+          language:
+            type: static
+            value: ru
+          audio_file:
+            expr: results.prepare_audio.audio_file
+            type: javascript
+          smart_format:
+            type: static
+            value: true
+      summary: Transcribe audio
+    - id: split_with_retry
+      value:
+        lock: '!inline split_into_posts.inline_script.lock'
+        type: rawscript
+        content: '!inline split_into_posts.inline_script.py'
+        language: python3
+        input_transforms:
+          flow_input:
+            expr: flow_input
+            type: javascript
+          transcribe:
+            expr: results.transcribe
+            type: javascript
+      summary: Split into posts
+    - id: process_posts
+      value:
+        type: forloopflow
+        modules:
+          - id: select_config
+            value:
+              lock: '!inline select_config.inline_script.lock'
+              type: rawscript
+              content: '!inline select_config.inline_script.py'
+              language: python3
+              input_transforms:
+                index:
+                  expr: flow_input.iter.index
+                  type: javascript
+                posts:
+                  expr: flow_input.posts
+                  type: javascript
+            summary: Select post configuration by index
+          - id: gen_post
+            value:
+              path: f/prj_content_forge/post_generator/generate_post
+              type: script
+              input_transforms:
+                input:
+                  expr: flow_input.iter.value
+                  type: javascript
+                genre_name:
+                  expr: results.select_config.genre_name
+                  type: javascript
+            summary: Generate final post text
+          - id: gen_titles
+            value:
+              path: f/transformations/title_generator/generate_titles
+              type: script
+              input_transforms:
+                input:
+                  expr: flow_input.iter.value
+                  type: javascript
+            summary: Generate titles
+          - id: gen_image_ideas
+            value:
+              path: f/transformations/image_prompts/generate_image_prompts
+              type: script
+              input_transforms:
+                input_text:
+                  expr: flow_input.iter.value
+                  type: javascript
+            summary: Generate image ideas
+          - id: get_genre_prompt
+            value:
+              path: f/transformations/baserow_genres/get_genre_image_prompt
+              type: script
+              input_transforms:
+                genre_id:
+                  expr: results.select_config.genre_id
+                  type: javascript
+            summary: Get genre image prompt
+          - id: gen_posters
+            value:
+              lock: '!inline gen_posters.inline_script.lock'
+              type: rawscript
+              content: '!inline gen_posters.inline_script.py'
+              language: python3
+              input_transforms:
+                ideas:
+                  expr: results.gen_image_ideas.output
+                  type: javascript
+                genre_prompt:
+                  expr: results.get_genre_prompt.prompt
+                  type: javascript
+            summary: Generate 2 posters via FAL
+          - id: add_to_baserow
+            value:
+              path: f/transformations/baserow_post/create_post
+              type: script
+              input_transforms:
+                date:
+                  expr: results.select_config.date
+                  type: javascript
+                status:
+                  type: static
+                  value: На вычитку тезисов
+                titles:
+                  expr: results.gen_titles.output
+                  type: javascript
+                genre_id:
+                  expr: results.select_config.genre_id
+                  type: javascript
+                raw_post:
+                  expr: flow_input.iter.value
+                  type: javascript
+                channel_id:
+                  expr: results.select_config.channel_id
+                  type: javascript
+                final_text:
+                  expr: results.gen_post.output
+                  type: javascript
+                image_ideas:
+                  expr: results.gen_posters.ideas_for_baserow
+                  type: javascript
+                poster_urls:
+                  expr: results.gen_posters.poster_urls
+                  type: javascript
+            summary: Insert row into Baserow
+        iterator:
+          expr: results.split_with_retry.segments
+          type: javascript
+        parallel: false
+        parallelism:
+          type: static
+          value: 1
+        skip_failures: false
+      summary: Process posts
+    - id: aggregate
+      value:
+        lock: '!inline aggregate_results.inline_script.lock'
+        type: rawscript
+        content: '!inline aggregate_results.inline_script.py'
+        language: python3
+        input_transforms:
+          flow_input:
+            expr: flow_input
+            type: javascript
+          process_posts:
+            expr: results.process_posts
+            type: javascript
+      summary: Aggregate results
+schema:
+  type: object
+  properties:
+    audio_file:
+      type: array
+    posts:
+      type: array
+    recording_path:
+      type: string

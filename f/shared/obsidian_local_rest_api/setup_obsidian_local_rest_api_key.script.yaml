@@ -1,0 +1,22 @@
+summary: ''
+description: ''
+lock: >-
+  !inline
+  f/shared/obsidian_local_rest_api/setup_obsidian_local_rest_api_key.script.lock
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    api_key:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    variable_path:
+      type: string
+      description: ''
+      default: u/theatmacreator/obsidian_local_rest_api_key
+      originalType: string
+  required:
+    - api_key

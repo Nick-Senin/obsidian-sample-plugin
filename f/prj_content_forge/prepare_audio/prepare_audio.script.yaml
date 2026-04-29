@@ -1,0 +1,14 @@
+summary: ''
+description: ''
+lock: '!inline f/prj_content_forge/prepare_audio/prepare_audio.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    flow_input:
+      type: object
+      description: ''
+      default: null
+  required:
+    - flow_input

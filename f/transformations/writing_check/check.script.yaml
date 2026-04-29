@@ -1,0 +1,20 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/writing_check/check.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    input:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    model:
+      type: string
+      description: ''
+      default: openai/gpt-4o-2024-08-06
+      originalType: string
+  required:
+    - input

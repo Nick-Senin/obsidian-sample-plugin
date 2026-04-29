@@ -1,0 +1,9 @@
+path: telegram/content_forge_bot
+method: POST
+summary: Telegram Webhook for Content Forge Bot
+description: Receives updates from Telegram bot
+script_path: f/prj_content_forge/content_forge_bot
+extra:
+  wrap_body: true
+auth:
+  kind: none

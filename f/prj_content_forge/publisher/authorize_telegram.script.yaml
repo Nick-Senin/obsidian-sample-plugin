@@ -1,0 +1,24 @@
+summary: ''
+description: ''
+lock: '!inline f/prj_content_forge/publisher/authorize_telegram.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    code:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    password:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    phone:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required: []

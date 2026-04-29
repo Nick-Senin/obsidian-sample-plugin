@@ -1,0 +1,76 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/chunked_audio_prep/prepare_transcript.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    allow_chunk_fallback_for_audio_url:
+      type: boolean
+      description: ''
+      default: false
+    analysis_type:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    audio_file:
+      type: ''
+      description: ''
+      default: null
+    audio_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    audio_url_fallback_transcriber_script_path:
+      type: string
+      description: ''
+      default: f/transformations/transcriber/transcribe
+      originalType: string
+    chunk_fallback_transcriber_script_path:
+      type: string
+      description: ''
+      default: f/transformations/transcriber/transcribe
+      originalType: string
+    chunk_minutes:
+      type: integer
+      description: ''
+      default: 15
+    max_wait_time:
+      type: integer
+      description: ''
+      default: 86400
+    overlap_seconds:
+      type: integer
+      description: ''
+      default: 10
+    payload:
+      type: ''
+      description: ''
+      default: null
+    poll_interval:
+      type: integer
+      description: ''
+      default: 5
+    s3_prefix:
+      type: string
+      description: ''
+      default: tmp/chunked_transcript
+      originalType: string
+    transcriber_retries:
+      type: integer
+      description: ''
+      default: 2
+    transcriber_script_path:
+      type: string
+      description: ''
+      default: f/transformations/gigaam_transcriber/transcribe
+      originalType: string
+    transcript:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required: []

@@ -1,0 +1,20 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/meeting_protocol/protocol.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    input:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    model:
+      type: string
+      description: ''
+      default: openai/gpt-4o-mini-2024-07-18
+      originalType: string
+  required:
+    - input

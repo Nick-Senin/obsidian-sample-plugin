@@ -1,0 +1,32 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/style_transfer/change_style.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    input_text:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    model:
+      type: string
+      description: ''
+      default: 'openrouter/moonshotai/kimi-k2-0905:nitro'
+      originalType: string
+    style_description:
+      type: string
+      description: ''
+      default: >-
+        Научно-популярный, вовлекающий, ясный. Собери в цельный текст, добавь
+        плавные переходы. Не используй списки. Отделяй смысловые части текста
+        пустой строкой.
+      originalType: string
+    temperature:
+      type: number
+      description: ''
+      default: 0.7
+  required:
+    - input_text

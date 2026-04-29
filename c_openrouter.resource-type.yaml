@@ -1,0 +1,25 @@
+description: |-
+  {
+    apiKey: '',
+    defaultHeaders: {
+      'HTTP-Referer': '<YOUR_SITE_URL>', // Optional. Site URL for rankings on openrouter.ai.
+      'X-Title': '<YOUR_SITE_NAME>', // Optional. Site title for rankings on openrouter.ai.
+    },
+  }
+format_extension: null
+schema:
+  type: object
+  additionalProperties: false
+  order:
+    - apiKey
+    - X-Title
+  properties:
+    apiKey:
+      type: string
+      description: ''
+      default: ''
+    X-Title:
+      type: string
+      description: ''
+      default: ''
+  required: []

@@ -1,0 +1,15 @@
+summary: ''
+description: ''
+lock: '!inline f/prj_content_forge/baserow_ideas/save_idea.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    idea:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - idea

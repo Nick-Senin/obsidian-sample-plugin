@@ -1,0 +1,62 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/baserow_post/create_post.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    channel_id:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    date:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    final_text:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    genre_id:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    image_ideas:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    poster_urls:
+      type: object
+      description: ''
+      default: null
+    publication_date:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    raw_post:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    status:
+      type: string
+      description: ''
+      default: На вычитку тезисов
+      originalType: string
+    titles:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - raw_post
+    - image_ideas
+    - titles
+    - final_text

@@ -1,0 +1,5 @@
+summary: Автоматическая публикация постов в Telegram
+schedule: "0 0 15 * * *"
+timezone: UTC
+script_path: f/prj_content_forge/publisher/publish_to_telegram
+is_flow: false

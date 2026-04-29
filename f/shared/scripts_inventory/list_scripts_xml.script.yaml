@@ -1,0 +1,21 @@
+summary: ''
+description: ''
+lock: '!inline f/shared/scripts_inventory/list_scripts_xml.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    concurrency:
+      type: integer
+      description: ''
+      default: 8
+    include_schema:
+      type: boolean
+      description: ''
+      default: true
+    prefer_draft:
+      type: boolean
+      description: ''
+      default: true
+  required: []

@@ -1,0 +1,520 @@
+summary: FAL Image Generator
+value:
+  fullscreen: false
+  grid:
+    - '12':
+        id: title
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 12
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 12
+        x: 0
+        'y': 0
+      '3':
+        id: title
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 1
+        max:
+          h: 100
+          w: 3
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 0
+      id: title
+      data:
+        id: title
+        type: textcomponent
+        card: false
+        componentInput:
+          type: template
+          value: FAL Image Generator
+          eval: FAL Image Generator
+          fieldType: template
+        configuration:
+          extraStyle:
+            type: static
+            value: 'padding-left:10px;'
+            fieldType: text
+          style:
+            type: static
+            value: Title
+            fieldType: select
+            onlyStatic: true
+            optionValuesKey: textStyleOptions
+        horizontalAlignment: left
+        softWrap: true
+        verticalAlignment: center
+    - '12':
+        id: prompt_input
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 12
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 12
+        x: 0
+        'y': 2
+      '3':
+        id: prompt_input
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 3
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 1
+      id: prompt_input
+      data:
+        id: prompt_input
+        type: textareainputcomponent
+        componentInput:
+          type: static
+          value: ''
+          fieldType: text
+        configuration:
+          defaultValue:
+            type: static
+            value: ''
+            fieldType: text
+          disabled:
+            type: static
+            value: false
+            fieldType: boolean
+          placeholder:
+            type: static
+            value: Введите промпт для генерации изображения...
+            fieldType: text
+    - '12':
+        id: model_select
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 12
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 4
+        x: 0
+        'y': 4
+      '3':
+        id: model_select
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 3
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 3
+      id: model_select
+      data:
+        id: model_select
+        type: selectcomponent
+        configuration:
+          defaultValue:
+            type: static
+            value: fal-ai/fast-sdxl
+            fieldType: text
+          items:
+            type: runnable
+            fields: {}
+            fieldType: array
+            recomputeOnInputChanged: false
+            runnable:
+              type: path
+              path: f/transformations/fal_image_generator/list_models
+              runType: script
+          placeholder:
+            type: static
+            value: Выберите модель
+            fieldType: text
+    - '12':
+        id: aspect_ratio_select
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 12
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 4
+        x: 4
+        'y': 4
+      '3':
+        id: aspect_ratio_select
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 3
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 5
+      id: aspect_ratio_select
+      data:
+        id: aspect_ratio_select
+        type: selectcomponent
+        configuration:
+          defaultValue:
+            type: static
+            value: '1:1'
+            fieldType: text
+          items:
+            type: static
+            value:
+              - value: '1:1'
+                label: 'Квадрат (1:1)'
+              - value: '16:9'
+                label: 'Широкий (16:9)'
+              - value: '9:16'
+                label: 'Портрет (9:16)'
+              - value: '4:3'
+                label: 'Альбом (4:3)'
+              - value: '3:4'
+                label: 'Книжный (3:4)'
+            fieldType: array
+          placeholder:
+            type: static
+            value: Соотношение сторон
+            fieldType: text
+    - '12':
+        id: num_images_input
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 12
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 4
+        x: 8
+        'y': 4
+      '3':
+        id: num_images_input
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 3
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 7
+      id: num_images_input
+      data:
+        id: num_images_input
+        type: numberinputcomponent
+        configuration:
+          defaultValue:
+            type: static
+            value: 1
+            fieldType: number
+          max:
+            type: static
+            value: 4
+            fieldType: number
+          min:
+            type: static
+            value: 1
+            fieldType: number
+          placeholder:
+            type: static
+            value: Количество изображений
+            fieldType: text
+    - '12':
+        id: generate_button
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 12
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 6
+      '3':
+        id: generate_button
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 2
+        max:
+          h: 100
+          w: 3
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 9
+      id: generate_button
+      data:
+        id: generate_button
+        type: buttoncomponent
+        componentInput:
+          type: runnable
+          fields:
+            aspect_ratio:
+              type: connected
+              value: null
+              connection:
+                componentId: aspect_ratio_select
+                path: result
+              fieldType: text
+            model:
+              type: connected
+              value: null
+              connection:
+                componentId: model_select
+                path: result
+              fieldType: text
+            num_images:
+              type: connected
+              value: null
+              connection:
+                componentId: num_images_input
+                path: result
+              fieldType: number
+            prompt:
+              type: connected
+              value: null
+              connection:
+                componentId: prompt_input
+                path: result
+              fieldType: text
+          recomputeOnInputChanged: false
+          runnable:
+            type: path
+            path: f/transformations/fal_image_generator/generate_image
+            runType: script
+            schema:
+              $schema: 'https://json-schema.org/draft/2020-12/schema'
+              type: object
+              properties:
+                aspect_ratio:
+                  type: string
+                  description: Соотношение сторон
+                model:
+                  type: string
+                  description: ID модели fal.ai
+                  default: fal-ai/fast-sdxl
+                num_images:
+                  type: integer
+                  description: Количество изображений
+                  default: 1
+                prompt:
+                  type: string
+                  description: Промпт для генерации изображения
+              required:
+                - prompt
+        configuration:
+          color:
+            type: static
+            value: blue
+            fieldType: select
+            onlyStatic: true
+          disabled:
+            type: static
+            value: false
+            fieldType: boolean
+          label:
+            type: static
+            value: "\U0001F3A8 Сгенерировать"
+            fieldType: text
+          size:
+            type: static
+            value: md
+            fieldType: select
+            onlyStatic: true
+    - '12':
+        id: result_image
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 12
+        max:
+          h: 100
+          w: 12
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 6
+        x: 0
+        'y': 8
+      '3':
+        id: result_image
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 8
+        max:
+          h: 100
+          w: 3
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 11
+      id: result_image
+      data:
+        id: result_image
+        type: imagecomponent
+        configuration:
+          altText:
+            type: static
+            value: Сгенерированное изображение
+            fieldType: text
+          fit:
+            type: static
+            value: contain
+            fieldType: select
+            onlyStatic: true
+          source:
+            type: connected
+            value: ''
+            connection:
+              componentId: generate_button
+              path: 'result.images[0].url'
+            fieldType: text
+    - '12':
+        id: result_info
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 12
+        max:
+          h: 100
+          w: 12
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 6
+        x: 6
+        'y': 8
+      '3':
+        id: result_info
+        customDragger: false
+        customResizer: false
+        draggable: true
+        fixed: false
+        h: 4
+        max:
+          h: 100
+          w: 3
+        min:
+          h: 1
+          w: 1
+        resizable: true
+        w: 3
+        x: 0
+        'y': 19
+      id: result_info
+      data:
+        id: result_info
+        type: textcomponent
+        card: true
+        componentInput:
+          type: connected
+          value: ''
+          connection:
+            componentId: generate_button
+            path: result
+          fieldType: object
+        configuration:
+          copyButton:
+            type: static
+            value: true
+            fieldType: boolean
+            onlyStatic: true
+          style:
+            type: static
+            value: Body
+            fieldType: select
+            onlyStatic: true
+        horizontalAlignment: left
+        softWrap: true
+        verticalAlignment: top
+  hiddenInlineScripts: []
+  subgrids: {}
+  unusedInlineScripts: []

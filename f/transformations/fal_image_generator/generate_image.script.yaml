@@ -1,0 +1,34 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/fal_image_generator/generate_image.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    aspect_ratio:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    model:
+      type: string
+      description: ''
+      default: fal-ai/fast-sdxl
+      originalType: string
+    num_images:
+      type: integer
+      description: ''
+      default: 1
+    prompt:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    resolution:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - prompt

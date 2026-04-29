@@ -1,0 +1,40 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/transcriber/transcribe.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    audio_file:
+      type: object
+      description: ''
+      default: null
+    audio_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    diarize:
+      type: boolean
+      description: ''
+      default: true
+    language:
+      type: string
+      description: ''
+      default: ru
+      originalType: string
+    model:
+      type: string
+      description: ''
+      default: whisper-medium
+      originalType: string
+    smart_format:
+      type: boolean
+      description: ''
+      default: false
+    timeout:
+      type: integer
+      description: ''
+      default: 300
+  required: []

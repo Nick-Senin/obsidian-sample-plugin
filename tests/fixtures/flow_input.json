@@ -1,0 +1,8 @@
+{
+  "audio_url": "https://example.com/test-audio.mp3",
+  "audio_file": null,
+  "model": "whisper-medium",
+  "language": "ru",
+  "diarize": true,
+  "smart_format": false
+}

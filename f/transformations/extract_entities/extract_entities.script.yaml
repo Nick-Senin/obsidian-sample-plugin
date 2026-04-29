@@ -1,0 +1,19 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/extract_entities/extract_entities.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    entities_count:
+      type: integer
+      description: ''
+      default: 10
+    text:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - text

@@ -1,0 +1,25 @@
+summary: OCR извлечение текста из изображений по URL
+description: >-
+  Отправляет URL изображения в Mistral OCR API и получает распознанный текст в
+  формате markdown. Работает с изображениями и PDF документами.
+lock: '!inline f/transformations/url_ocr/ocr.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    max_chars:
+      type: integer
+      description: ''
+      default: 10000
+    max_pages:
+      type: integer
+      description: ''
+      default: 5
+    url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - url

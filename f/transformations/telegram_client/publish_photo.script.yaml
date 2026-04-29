@@ -1,0 +1,27 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/telegram_client/publish_photo.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    channel:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    photo_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    text:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - channel
+    - text
+    - photo_url

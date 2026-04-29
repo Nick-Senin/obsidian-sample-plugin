@@ -1,0 +1,33 @@
+description: X/Twitter API user-context credentials
+format_extension: null
+schema:
+  type: object
+  additionalProperties: false
+  order:
+    - api_key
+    - api_secret
+    - access_token
+    - access_token_secret
+    - oauth2_access_token
+  properties:
+    api_key:
+      type: string
+      description: X API OAuth 1.0a API key. Prefer $var reference.
+      default: ''
+    api_secret:
+      type: string
+      description: X API OAuth 1.0a API key secret. Prefer $var reference.
+      default: ''
+    access_token:
+      type: string
+      description: X API OAuth 1.0a user access token. Prefer $var reference.
+      default: ''
+    access_token_secret:
+      type: string
+      description: X API OAuth 1.0a user access token secret. Prefer $var reference.
+      default: ''
+    oauth2_access_token:
+      type: string
+      description: Optional OAuth 2.0 user-context access token with tweet.write/media.write.
+      default: ''
+  required: []

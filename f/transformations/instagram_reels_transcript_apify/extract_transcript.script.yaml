@@ -1,0 +1,56 @@
+summary: ''
+description: ''
+lock: >-
+  !inline
+  f/transformations/instagram_reels_transcript_apify/extract_transcript.script.lock
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    actor_id:
+      type: string
+      description: ''
+      default: apify/instagram-scraper
+      originalType: string
+    apify:
+      type: object
+      description: ''
+      default: null
+      format: resource-apify_api_key
+    channel:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    reel_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    reel_urls:
+      type: array
+      description: ''
+      default: null
+      items:
+        type: string
+      originalType: 'string[]'
+    reels_limit:
+      type: integer
+      description: ''
+      default: 5
+    retries:
+      type: integer
+      description: ''
+      default: 2
+    timeout_secs:
+      type: integer
+      description: ''
+      default: 300
+    transcript_actor_id:
+      type: string
+      description: ''
+      default: apify/instagram-reel-scraper
+      originalType: string
+  required:
+    - apify

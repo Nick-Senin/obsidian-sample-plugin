@@ -1,0 +1,25 @@
+summary: ''
+description: ''
+lock: '!inline f/prj_content_forge/post_generator/generate_post.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    genre_name:
+      type: string
+      description: ''
+      default: Обычные контентные посты
+      originalType: string
+    input:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    model:
+      type: string
+      description: ''
+      default: google/gemini-3-flash-preview
+      originalType: string
+  required:
+    - input

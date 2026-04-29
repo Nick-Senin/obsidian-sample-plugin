@@ -1,0 +1,139 @@
+summary: Create posts from transcript
+description: >
+  Transcribe audio/video, split transcript into posts, generate post/title/image ideas,
+  then insert into Baserow
+value:
+  modules:
+    - id: transcribe
+      summary: Transcribe audio/video (Deepgram)
+      value:
+        type: script
+        path: f/transformations/transcriber/transcribe
+        input_transforms:
+          audio_file:
+            type: javascript
+            expr: flow_input.audio_file
+          audio_url:
+            type: javascript
+            expr: flow_input.audio_url
+          model:
+            type: javascript
+            expr: flow_input.model
+          language:
+            type: javascript
+            expr: flow_input.language
+          diarize:
+            type: javascript
+            expr: flow_input.diarize
+          smart_format:
+            type: javascript
+            expr: flow_input.smart_format
+    - id: split_posts
+      summary: Split transcript into posts
+      value:
+        type: script
+        path: f/transformations/post_splitter/split_posts
+        input_transforms:
+          input:
+            type: javascript
+            expr: results.transcribe.text
+    - id: loop_posts
+      summary: For each post -> generate post/titles/image ideas -> insert into Baserow
+      value:
+        type: forloopflow
+        iterator:
+          type: javascript
+          expr: results.split_posts.output.split("@@@@@").map(s => s.trim()).filter(s => s.length > 0)
+        skip_failures: false
+        parallel: false
+        parallelism:
+          type: static
+          value: 1
+        modules:
+          - id: gen_post
+            summary: Generate final post text
+            value:
+              type: script
+              path: f/prj_content_forge/post_generator/generate_post
+              input_transforms:
+                input:
+                  type: javascript
+                  expr: flow_input.iter.value
+          - id: gen_titles
+            summary: Generate titles
+            value:
+              type: script
+              path: f/transformations/title_generator/generate_titles
+              input_transforms:
+                input:
+                  type: javascript
+                  expr: flow_input.iter.value
+          - id: gen_image_ideas
+            summary: Generate image ideas
+            value:
+              type: script
+              path: f/transformations/image_prompts/generate_image_prompts
+              input_transforms:
+                input_text:
+                  type: javascript
+                  expr: flow_input.iter.value
+          - id: add_to_baserow
+            summary: Insert row into Baserow
+            value:
+              type: script
+              path: f/transformations/baserow_post/create_post
+              input_transforms:
+                raw_post:
+                  type: javascript
+                  expr: flow_input.iter.value
+                image_ideas:
+                  type: javascript
+                  expr: results.gen_image_ideas.output
+                titles:
+                  type: javascript
+                  expr: results.gen_titles.output
+                final_text:
+                  type: javascript
+                  expr: results.gen_post.output
+                status:
+                  type: static
+                  value: На вычитку тезисов
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  order:
+    - audio_url
+    - audio_file
+    - model
+    - language
+    - diarize
+    - smart_format
+  properties:
+    audio_url:
+      type: string
+      description: URL аудио/видео файла для транскрибации
+      default: null
+      originalType: string
+    audio_file:
+      type: object
+      description: Файл из компонента File input (обычно array[{name, data}])
+      default: null
+    model:
+      type: string
+      description: Модель транскрибации
+      default: whisper-medium
+      originalType: string
+    language:
+      type: string
+      description: Язык аудио
+      default: ru
+      originalType: string
+    diarize:
+      type: boolean
+      description: Включить диаризацию/определение говорящих
+      default: true
+    smart_format:
+      type: boolean
+      description: Умное форматирование чисел, дат и т.д.
+      default: false
+  required: []

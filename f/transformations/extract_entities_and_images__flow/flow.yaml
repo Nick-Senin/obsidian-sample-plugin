@@ -1,0 +1,61 @@
+summary: Extract entities and fetch images (Wikimedia Commons)
+description: >-
+  Extract entities from text via LLM and download a заданное количество
+  изображений per entity from Wikimedia Commons into S3.
+value:
+  modules:
+    - id: extract_entities
+      summary: Extract entities (LLM)
+      value:
+        type: script
+        input_transforms:
+          entities_count:
+            type: javascript
+            expr: flow_input.entities_count
+          text:
+            type: javascript
+            expr: flow_input.text
+        path: f/transformations/extract_entities/extract_entities
+    - id: search_images
+      summary: Search images and save to S3 (Commons)
+      value:
+        type: script
+        input_transforms:
+          entities:
+            type: javascript
+            expr: results.extract_entities.entities
+          images_per_entity:
+            type: javascript
+            expr: flow_input.images_per_entity
+          min_height:
+            type: javascript
+            expr: flow_input.min_height
+          min_width:
+            type: javascript
+            expr: flow_input.min_width
+          s3_prefix:
+            type: javascript
+            expr: flow_input.s3_prefix
+        path: f/transformations/commons_images/search_commons_images
+schema:
+  type: object
+  properties:
+    entities_count:
+      type: integer
+      default: 10
+    images_per_entity:
+      type: integer
+      default: 3
+    min_height:
+      type: integer
+      default: 0
+    min_width:
+      type: integer
+      default: 0
+    s3_prefix:
+      type: string
+      default: commons_images
+    text:
+      type: string
+  required:
+    - text

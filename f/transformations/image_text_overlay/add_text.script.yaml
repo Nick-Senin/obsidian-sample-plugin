@@ -1,0 +1,197 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/image_text_overlay/add_text.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    bottom_left_color:
+      type: string
+      description: ''
+      default: white
+      originalType: string
+    bottom_left_font:
+      type: string
+      description: ''
+      default: DejaVu-Sans
+      originalType: string
+    bottom_left_font_s3:
+      type: object
+      description: ''
+      default: null
+      format: resource-s3_object
+    bottom_left_font_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    bottom_left_offset_x:
+      type: integer
+      description: ''
+      default: 40
+    bottom_left_offset_y:
+      type: integer
+      description: ''
+      default: 40
+    bottom_left_size:
+      type: integer
+      description: ''
+      default: 36
+    bottom_left_stroke_color:
+      type: string
+      description: ''
+      default: black
+      originalType: string
+    bottom_left_stroke_width:
+      type: integer
+      description: ''
+      default: 2
+    bottom_left_style:
+      type: string
+      description: ''
+      default: normal
+      originalType: string
+    bottom_left_text:
+      type: string
+      description: ''
+      default: Нижний слева
+      originalType: string
+    bottom_left_weight:
+      type: string
+      description: ''
+      default: normal
+      originalType: string
+    bottom_right_color:
+      type: string
+      description: ''
+      default: white
+      originalType: string
+    bottom_right_font:
+      type: string
+      description: ''
+      default: DejaVu-Sans
+      originalType: string
+    bottom_right_font_s3:
+      type: object
+      description: ''
+      default: null
+      format: resource-s3_object
+    bottom_right_font_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    bottom_right_offset_x:
+      type: integer
+      description: ''
+      default: 40
+    bottom_right_offset_y:
+      type: integer
+      description: ''
+      default: 40
+    bottom_right_size:
+      type: integer
+      description: ''
+      default: 36
+    bottom_right_stroke_color:
+      type: string
+      description: ''
+      default: black
+      originalType: string
+    bottom_right_stroke_width:
+      type: integer
+      description: ''
+      default: 2
+    bottom_right_style:
+      type: string
+      description: ''
+      default: normal
+      originalType: string
+    bottom_right_text:
+      type: string
+      description: ''
+      default: Нижний справа
+      originalType: string
+    bottom_right_weight:
+      type: string
+      description: ''
+      default: normal
+      originalType: string
+    image_s3:
+      type: object
+      description: ''
+      default: null
+      format: resource-s3_object
+    image_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    output_format:
+      type: string
+      description: ''
+      default: png
+      originalType: string
+    output_s3_path:
+      type: object
+      description: ''
+      default: null
+      format: resource-s3_object
+    top_color:
+      type: string
+      description: ''
+      default: white
+      originalType: string
+    top_font:
+      type: string
+      description: ''
+      default: DejaVu-Sans
+      originalType: string
+    top_font_s3:
+      type: object
+      description: ''
+      default: null
+      format: resource-s3_object
+    top_font_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    top_offset_x:
+      type: integer
+      description: ''
+      default: 0
+    top_offset_y:
+      type: integer
+      description: ''
+      default: 40
+    top_size:
+      type: integer
+      description: ''
+      default: 48
+    top_stroke_color:
+      type: string
+      description: ''
+      default: black
+      originalType: string
+    top_stroke_width:
+      type: integer
+      description: ''
+      default: 2
+    top_style:
+      type: string
+      description: ''
+      default: normal
+      originalType: string
+    top_text:
+      type: string
+      description: ''
+      default: Верхний текст
+      originalType: string
+    top_weight:
+      type: string
+      description: ''
+      default: normal
+      originalType: string
+  required: []

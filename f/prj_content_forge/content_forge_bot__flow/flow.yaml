@@ -1,0 +1,13 @@
+summary: Telegram Webhook handler for Content Forge Bot
+description: |
+  Обрабатывает входящие сообщения от Telegram бота Content Forge.
+value:
+  modules:
+    - id: handle_update
+      value:
+        type: script
+        path: f/prj_content_forge/content_forge_bot
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties: {}

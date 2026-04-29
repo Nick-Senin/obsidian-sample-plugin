@@ -1,0 +1,15 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/baserow_genres/get_genre_image_prompt.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    genre_id:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - genre_id

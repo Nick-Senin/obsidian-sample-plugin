@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# Node
+node_modules/
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+.envrc
+
+# Windmill
+.windmill/
+
+# Secrets and credentials
+u/theatmacreator/*.resource.yaml
+u/theatmacreator/*.variable.yaml
+u/theatmacreator/*__app/
+*.session
+*.script.lock
+*.inline_script.lock
+*.lock
+wmill-lock.yaml
+users/

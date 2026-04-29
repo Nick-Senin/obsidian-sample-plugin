@@ -1,0 +1,19 @@
+summary: Итеративное улучшение знаний с проверкой воспроизводимости
+description: 'Проверяет воспроизводимость знаний через repro_checklist и улучшает их через Perplexity до достижения оценки >= 7 или max_iterations.'
+lock: '!inline f/transformations/deep_completion/complete.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    input:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    max_iterations:
+      type: integer
+      description: ''
+      default: 5
+  required:
+    - input

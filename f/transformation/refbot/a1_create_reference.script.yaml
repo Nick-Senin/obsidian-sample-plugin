@@ -1,0 +1,25 @@
+summary: ''
+description: ''
+lock: '!inline f/transformation/refbot/a1_create_reference.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    baserow:
+      type: object
+      description: ''
+      default: '$res:u/theatmacreator/refbot_baserow'
+      format: resource-baserow
+    url_raw:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    user_comment:
+      type: string
+      description: ''
+      default: ''
+      originalType: string
+  required:
+    - url_raw

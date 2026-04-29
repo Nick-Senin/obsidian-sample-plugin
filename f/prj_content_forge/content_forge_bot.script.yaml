@@ -1,0 +1,19 @@
+summary: ''
+description: ''
+lock: '!inline f/prj_content_forge/content_forge_bot.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    body:
+      type: object
+      description: ''
+      default: null
+      properties: {}
+    update:
+      type: object
+      description: ''
+      default: null
+      properties: {}
+  required: []

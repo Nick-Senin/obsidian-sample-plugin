@@ -1,0 +1,11 @@
+summary: ''
+description: ''
+lock: >-
+  !inline
+  f/prj_content_forge/flows/process_recording/aggregate_results.script.lock
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties: {}
+  required: []

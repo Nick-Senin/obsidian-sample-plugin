@@ -1,0 +1,35 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/send_with_tg_bot/send_message.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    chat_id_or_link:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    disable_web_page_preview:
+      type: boolean
+      description: ''
+      default: true
+    message:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    photo_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    token_variable_path:
+      type: string
+      description: ''
+      default: u/theatmacreator/veto_tg_token
+      originalType: string
+  required:
+    - message
+    - chat_id_or_link

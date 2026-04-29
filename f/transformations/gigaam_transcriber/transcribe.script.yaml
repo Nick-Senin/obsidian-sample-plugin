@@ -1,0 +1,35 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/gigaam_transcriber/transcribe.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    audio_file:
+      type: object
+      description: ''
+      default: null
+    audio_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    max_wait_time:
+      type: integer
+      description: ''
+      default: 86400
+    modal_base_url:
+      type: string
+      description: ''
+      default: 'https://nick-senin--gigaam-v3-asr-api.modal.run'
+      originalType: string
+    poll_interval:
+      type: integer
+      description: ''
+      default: 5
+    submit_timeout:
+      type: integer
+      description: ''
+      default: 180
+  required: []

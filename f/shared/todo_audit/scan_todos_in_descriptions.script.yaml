@@ -1,0 +1,58 @@
+summary: 'TODO audit: поиск TODO в описаниях'
+description: >-
+  Ищет строки с TODO во всех `description`/`summary` полях у scripts/flows/apps
+  через Windmill API и возвращает summary + список совпадений.
+lock: '!inline f/shared/todo_audit/scan_todos_in_descriptions.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    apps_concurrency:
+      type: integer
+      description: 'Параллелизм загрузки apps spec (>=1). Default: 6.'
+      default: 6
+    case_insensitive:
+      type: boolean
+      description: 'Если true — поиск TODO без учета регистра. Default: true.'
+      default: true
+    exclude_self:
+      type: boolean
+      description: 'Если true — исключить этот audit-скрипт из результатов. Default: true.'
+      default: true
+    flows_concurrency:
+      type: integer
+      description: 'Параллелизм загрузки flows (>=1). Default: 6.'
+      default: 6
+    include_archived:
+      type: boolean
+      description: >-
+        Если true — включать archived scripts/flows (на apps не влияет).
+        Default: true.
+      default: true
+    include_draft_only:
+      type: boolean
+      description: 'Если true — включать draft-only сущности. Default: true.'
+      default: true
+    max_hits:
+      type: integer
+      description: 'Максимум найденных строк в выдаче (>=1). Default: 2000.'
+      default: 2000
+    per_page:
+      type: integer
+      description: 'Размер страницы для list endpoints (1..100). Default: 100.'
+      default: 100
+    prefer_draft:
+      type: boolean
+      description: 'Если true — при наличии draft сканировать draft-версию. Default: true.'
+      default: true
+    scripts_concurrency:
+      type: integer
+      description: 'Параллелизм загрузки scripts (>=1). Default: 6.'
+      default: 6
+    todo_pattern:
+      type: string
+      description: 'Regex для поиска TODO. Default: \\bTODO\\b.'
+      default: \bTODO\b
+      originalType: string
+  required: []

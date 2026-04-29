@@ -1,0 +1,32 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/pandoc_converter/convert.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    content:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    extra_args:
+      type: array
+      description: ''
+      default: []
+      items:
+        type: string
+      originalType: 'string[]'
+    from_format:
+      type: string
+      description: ''
+      default: markdown
+      originalType: string
+    to_format:
+      type: string
+      description: ''
+      default: html
+      originalType: string
+  required:
+    - content

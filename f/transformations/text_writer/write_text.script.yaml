@@ -1,0 +1,36 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/text_writer/write_text.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    max_tokens:
+      type: integer
+      description: ''
+      default: 2000
+    model:
+      type: string
+      description: ''
+      default: 'google/gemini-2.0-flash-exp:free'
+      originalType: string
+    prompt_template:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    temperature:
+      type: number
+      description: ''
+      default: 0.7
+    theses:
+      type: array
+      description: ''
+      default: null
+      items:
+        type: string
+      originalType: 'string[]'
+  required:
+    - prompt_template
+    - theses

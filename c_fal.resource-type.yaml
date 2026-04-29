@@ -1,0 +1,13 @@
+description: Fal.ai API resource type
+format_extension: null
+schema:
+  type: object
+  additionalProperties: false
+  order:
+    - apiKey
+  properties:
+    apiKey:
+      type: string
+      description: Fal.ai API Key
+      default: ''
+  required: []

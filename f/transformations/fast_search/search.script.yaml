@@ -1,0 +1,15 @@
+summary: Последовательный поиск через 3 AI модели
+description: 'Выполняет поиск по запросу через 3 разные модели (Claude, GLM, Perplexity) последовательно и объединяет результаты в единый ответ.'
+lock: '!inline f/transformations/fast_search/search.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    input:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - input

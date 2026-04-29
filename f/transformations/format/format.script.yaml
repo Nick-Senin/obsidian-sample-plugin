@@ -1,0 +1,20 @@
+summary: Форматирование текста с разбивкой на части
+description: 'Разбивает входной текст на части по 3000 символов, форматирует каждую часть через Gemini и объединяет результаты.'
+lock: '!inline f/transformations/format/format.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    input:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    model:
+      type: string
+      description: ''
+      default: google/gemini-2.0-flash-001
+      originalType: string
+  required:
+    - input

@@ -1,0 +1,29 @@
+description: Obsidian Local REST API (plugin) connection
+format_extension: null
+schema:
+  type: object
+  additionalProperties: false
+  order:
+    - baseUrl
+    - apiKey
+    - timeoutSeconds
+  properties:
+    apiKey:
+      type: string
+      description: >-
+        Bearer token for obsidian-local-rest-api. Prefer referencing a secret
+        variable: $var:u/theatmacreator/obsidian_local_rest_api_key
+      default: ''
+    baseUrl:
+      type: string
+      description: >-
+        Base URL of Obsidian Local REST API (usually http://obsidian-poc:27123
+        inside docker network)
+      default: 'http://obsidian-poc:27123'
+    timeoutSeconds:
+      type: integer
+      description: HTTP timeout in seconds (clients may ignore this; keep as metadata)
+      default: 10
+  required:
+    - baseUrl
+    - apiKey

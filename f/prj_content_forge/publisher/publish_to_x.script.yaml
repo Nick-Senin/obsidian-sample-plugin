@@ -1,0 +1,44 @@
+summary: ''
+description: ''
+lock: '!inline f/prj_content_forge/publisher/publish_to_x.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    image_base64:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    image_media_type:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    image_path:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    image_url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    reply_to_tweet_id:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    resource_path:
+      type: string
+      description: ''
+      default: u/theatmacreator/x_api
+      originalType: string
+    text:
+      type: string
+      description: ''
+      default: ''
+      originalType: string
+  required: []

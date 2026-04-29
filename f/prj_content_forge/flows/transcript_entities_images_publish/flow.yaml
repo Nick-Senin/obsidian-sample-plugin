@@ -1,0 +1,137 @@
+summary: Transcript -> entities -> images -> Telegram DM
+description: >-
+  Extracts entities from a transcript, searches Wikimedia Commons images,
+  and sends a compact digest to a Telegram private chat via bot.
+value:
+  modules:
+    - id: extract_entities
+      summary: Extract entities from transcript
+      value:
+        type: script
+        path: f/transformations/extract_entities/extract_entities
+        input_transforms:
+          text:
+            type: javascript
+            expr: flow_input.transcript
+          entities_count:
+            type: javascript
+            expr: flow_input.entities_count
+    - id: search_images
+      summary: Search Wikimedia Commons images
+      value:
+        type: rawscript
+        content: '!inline search_image_urls.py'
+        language: python3
+        input_transforms:
+          entities:
+            type: javascript
+            expr: results.extract_entities.entities
+          images_per_entity:
+            type: javascript
+            expr: flow_input.images_per_entity
+          min_width:
+            type: javascript
+            expr: flow_input.min_width
+          min_height:
+            type: javascript
+            expr: flow_input.min_height
+          use_wikidata:
+            type: javascript
+            expr: flow_input.use_wikidata
+    - id: compose_payload
+      summary: Compose Telegram payload
+      value:
+        type: rawscript
+        content: '!inline compose_payload.py'
+        language: python3
+        input_transforms:
+          transcript:
+            type: javascript
+            expr: flow_input.transcript
+          extract_entities:
+            type: javascript
+            expr: results.extract_entities
+          search_images:
+            type: javascript
+            expr: results.search_images
+          title_prefix:
+            type: javascript
+            expr: flow_input.title_prefix
+    - id: send_telegram_dm
+      summary: Send digest to Telegram private chat
+      value:
+        type: script
+        path: f/transformations/send_with_tg_bot/send_message
+        input_transforms:
+          message:
+            type: javascript
+            expr: results.compose_payload.telegram_text
+          chat_id_or_link:
+            type: javascript
+            expr: flow_input.telegram_chat_id_or_link
+          token_variable_path:
+            type: javascript
+            expr: flow_input.telegram_bot_token_variable_path
+          photo_url:
+            type: javascript
+            expr: results.compose_payload.photo_url
+          disable_web_page_preview:
+            type: static
+            value: true
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  order:
+    - transcript
+    - telegram_chat_id_or_link
+    - telegram_bot_token_variable_path
+    - entities_count
+    - images_per_entity
+    - title_prefix
+    - min_width
+    - min_height
+    - use_wikidata
+  properties:
+    transcript:
+      type: string
+      description: Transcript text to process
+      default: null
+      originalType: string
+    telegram_chat_id_or_link:
+      type: string
+      description: Telegram private chat id or t.me link resolved by send_with_tg_bot
+      default: null
+      originalType: string
+    telegram_bot_token_variable_path:
+      type: string
+      description: Windmill secret variable path with Telegram bot token
+      default: u/theatmacreator/veto_tg_token
+      originalType: string
+    entities_count:
+      type: integer
+      description: Number of entities to extract
+      default: 10
+    images_per_entity:
+      type: integer
+      description: Number of images to save for each entity
+      default: 1
+    title_prefix:
+      type: string
+      description: Prefix for generated digest title
+      default: Transcript entities
+      originalType: string
+    min_width:
+      type: integer
+      description: Minimum Commons image width
+      default: 100
+    min_height:
+      type: integer
+      description: Minimum Commons image height
+      default: 100
+    use_wikidata:
+      type: boolean
+      description: Prefer Wikidata image claims before Commons search
+      default: true
+  required:
+    - transcript
+    - telegram_chat_id_or_link

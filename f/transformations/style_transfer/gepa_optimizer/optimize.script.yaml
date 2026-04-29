@@ -1,0 +1,33 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/style_transfer/gepa_optimizer/optimize.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    max_full_evals:
+      type: integer
+      description: ''
+      default: 5
+    model:
+      type: string
+      description: ''
+      default: 'openrouter/moonshotai/kimi-k2-0905:nitro'
+      originalType: string
+    reflection_model:
+      type: string
+      description: ''
+      default: 'openrouter/deepseek/deepseek-v3.2:nitro'
+      originalType: string
+    temperature:
+      type: number
+      description: ''
+      default: 0.7
+    training_data:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - training_data

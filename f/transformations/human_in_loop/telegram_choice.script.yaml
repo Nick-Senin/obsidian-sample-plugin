@@ -1,0 +1,59 @@
+summary: Human-in-the-loop выбор через Telegram inline keyboard
+description: >
+  Отправляет вопрос в Telegram личный чат через Bot API, показывает варианты
+  ответа inline-кнопками, ждёт callback через getUpdates polling и возвращает
+  выбранный вариант.
+lock: '!inline f/transformations/human_in_loop/telegram_choice.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    chat_id_or_link:
+      type: string
+      description: 'Telegram chat_id, @username или ссылка t.me/c/<id>/<msg>'
+      default: null
+      originalType: string
+    columns:
+      type: integer
+      description: 'Количество кнопок в строке, от 1 до 4'
+      default: 1
+    delete_webhook_if_set:
+      type: boolean
+      description: 'Удалить webhook бота перед polling, если он установлен'
+      default: false
+    message:
+      type: string
+      description: Текст вопроса/сообщения
+      default: null
+      originalType: string
+    options:
+      type: array
+      description: 'Массив вариантов: строки или объекты с label/value'
+      default: null
+      items:
+        type: resource
+        resourceType: Any
+      originalType: 'resource[]'
+    poll_timeout_seconds:
+      type: integer
+      description: Длительность одного Telegram long-poll запроса
+      default: 20
+    remove_keyboard_after_answer:
+      type: boolean
+      description: Убрать inline-клавиатуру после выбора
+      default: true
+    timeout_seconds:
+      type: integer
+      description: Сколько секунд ждать ответ
+      default: 36000
+    token_variable_path:
+      type: string
+      description: Путь к secret variable с Telegram bot token
+      default: u/theatmacreator/veto_tg_token
+      originalType: string
+  required:
+    - message
+    - options
+    - chat_id_or_link
+timeout: 37000

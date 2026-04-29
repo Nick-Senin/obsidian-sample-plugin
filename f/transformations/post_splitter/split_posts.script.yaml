@@ -1,0 +1,20 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/post_splitter/split_posts.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    input:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    model:
+      type: string
+      description: ''
+      default: 'openai/gpt-oss-120b:nitro'
+      originalType: string
+  required:
+    - input

@@ -1,0 +1,39 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/pastebin/send_to_pastebit.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    dev_key_variable_path:
+      type: string
+      description: ''
+      default: u/theatmacreator/pastebin_dev_key
+      originalType: string
+    expire:
+      type: string
+      description: ''
+      default: 'N'
+      originalType: string
+    format:
+      type: string
+      description: ''
+      default: text
+      originalType: string
+    privacy:
+      type: integer
+      description: ''
+      default: 1
+    text:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+    title:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - text

@@ -1,0 +1,15 @@
+summary: Проверка воспроизводимости текста
+description: 'Определяет тип текста (solution или cause_effect) и оценивает его воспроизводимость по шкале 0-10 с объяснением.'
+lock: '!inline f/transformations/repro_checklist/check.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    input:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - input

@@ -1,0 +1,15 @@
+summary: Парсинг URL в markdown через Firecrawl
+description: 'Получает содержимое веб-страницы по URL и возвращает его в формате markdown с помощью Firecrawl API.'
+lock: '!inline f/transformations/scrape_url/scrape.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - url

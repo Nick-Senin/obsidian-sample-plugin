@@ -1,0 +1,21 @@
+summary: ''
+description: ''
+lock: '!inline f/prj_content_forge/reproduce_error.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    audio_file:
+      type: object
+      description: ''
+      default: null
+    posts:
+      type: object
+      description: ''
+      default: null
+    recording_path:
+      type: object
+      description: ''
+      default: null
+  required: []

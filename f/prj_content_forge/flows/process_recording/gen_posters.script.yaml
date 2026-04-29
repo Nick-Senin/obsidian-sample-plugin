@@ -1,0 +1,27 @@
+summary: ''
+description: ''
+lock: '!inline f/prj_content_forge/flows/process_recording/gen_posters.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    aspect_ratio:
+      type: ''
+      description: ''
+      default: null
+    genre_prompt:
+      type: object
+      description: ''
+      default: null
+    ideas:
+      type: object
+      description: ''
+      default: null
+    image_model:
+      type: ''
+      description: ''
+      default: null
+  required:
+    - ideas
+    - genre_prompt

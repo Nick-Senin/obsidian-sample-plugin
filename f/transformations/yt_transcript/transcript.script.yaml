@@ -1,0 +1,20 @@
+summary: Получение транскрипта YouTube видео
+description: Извлекает текст транскрипта (субтитров) из YouTube видео с помощью yt-dlp.
+lock: '!inline f/transformations/yt_transcript/transcript.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    lang:
+      type: string
+      description: ''
+      default: ru
+      originalType: string
+    url:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required:
+    - url

@@ -1,0 +1,36 @@
+summary: ''
+description: ''
+lock: '!inline f/transformation/refbot/a8_ai_tag_autocreate_2tables.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    baserow:
+      type: string
+      description: ''
+      default: '$res:u/theatmacreator/refbot_baserow'
+      originalType: string
+    llm_model:
+      type: string
+      description: ''
+      default: z-ai/glm-4.7-flash
+      originalType: string
+    max_new_tags:
+      type: integer
+      description: ''
+      default: 2
+    max_tags:
+      type: integer
+      description: ''
+      default: 6
+    reference_id:
+      type: number
+      description: ''
+      default: null
+    tags_table_id:
+      type: integer
+      description: ''
+      default: null
+  required:
+    - reference_id

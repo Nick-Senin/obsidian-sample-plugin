@@ -1,0 +1,144 @@
+summary: Analyze transcript into protocol
+description: >-
+  Accepts transcript + analysis type, optionally re-transcribes audio via
+  GigaAM, then runs analysis script and returns JSON.
+value:
+  modules:
+    - id: prepare_audio
+      summary: Prepare audio and transcribe in chunks
+      value:
+        type: script
+        path: f/transformations/chunked_audio_prep/prepare_transcript
+    - id: get_transcript
+      summary: Get transcript (prefer GigaAM if audio provided)
+      value:
+        type: rawscript
+        content: '!inline get_transcript_(prefer_gigaam_if_audio_provided).py'
+        input_transforms:
+          analysis_type:
+            type: javascript
+            expr: results.prepare_audio.analysis_type
+          audio_file:
+            type: javascript
+            expr: results.prepare_audio.audio_file
+          audio_url:
+            type: javascript
+            expr: results.prepare_audio.audio_url
+          transcript:
+            type: javascript
+            expr: results.prepare_audio.transcript
+        lock: '!inline get_transcript_(prefer_gigaam_if_audio_provided).lock'
+        language: python3
+    - id: analyze
+      summary: Analyze transcript
+      value:
+        type: script
+        input_transforms:
+          context:
+            type: static
+            value: ''
+          meeting_type:
+            type: javascript
+            expr: results.get_transcript.analysis_type
+          model:
+            type: static
+            value: x-ai/grok-4-fast
+          raw_transcript:
+            type: javascript
+            expr: results.get_transcript.text
+        path: f/transformations/meeting_processor/process_meeting
+    - id: gen_titles
+      summary: Generate title candidates
+      value:
+        type: script
+        input_transforms:
+          input:
+            type: javascript
+            expr: results.get_transcript.text
+        path: f/transformations/title_generator/generate_titles
+    - id: pick_title
+      summary: Pick title
+      value:
+        type: rawscript
+        content: '!inline pick_title.py'
+        input_transforms:
+          analysis_type:
+            type: javascript
+            expr: results.get_transcript.analysis_type
+          titles_text:
+            type: javascript
+            expr: results.gen_titles.output
+        lock: '!inline pick_title.lock'
+        language: python3
+    - id: paste_transcript
+      summary: Send transcript to Pastebin
+      value:
+        type: script
+        input_transforms:
+          text:
+            type: javascript
+            expr: results.get_transcript.text
+          title:
+            type: javascript
+            expr: results.pick_title.title
+        path: f/transformations/pastebin/send_to_pastebit
+    - id: send_tg
+      summary: Send Pastebin link to Telegram
+      value:
+        type: script
+        input_transforms:
+          chat_id_or_link:
+            type: static
+            value: 'https://t.me/c/2040830209/336'
+          message:
+            type: javascript
+            expr: >-
+              "Title: " + results.pick_title.title + "\nPastebin transcript: " +
+              results.paste_transcript.url
+          token_variable_path:
+            type: static
+            value: u/theatmacreator/veto_tg_token
+        path: f/transformations/send_with_tg_bot/send_message
+    - id: compose
+      summary: Compose output
+      value:
+        type: rawscript
+        content: '!inline compose_output.py'
+        input_transforms:
+          analyze:
+            type: javascript
+            expr: results.analyze
+          get_transcript:
+            type: javascript
+            expr: results.get_transcript
+          paste_transcript:
+            type: javascript
+            expr: results.paste_transcript
+          pick_title:
+            type: javascript
+            expr: results.pick_title
+          send_tg:
+            type: javascript
+            expr: results.send_tg
+        lock: '!inline compose_output.lock'
+        language: python3
+schema:
+  type: object
+  properties:
+    analysis_type:
+      type: string
+      default: обычный
+      enum:
+        - обычный
+        - консультация
+        - custdev
+        - лекция
+    audio_file:
+      type: array
+      description: 'Optional file input (array[{name,data}] or S3Object) for GigaAM'
+    audio_url:
+      type: string
+      description: Optional URL to audio for GigaAM
+    transcript:
+      type: string
+      description: Raw transcript text (if audio is not provided)

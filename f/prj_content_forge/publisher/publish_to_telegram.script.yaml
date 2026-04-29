@@ -1,0 +1,17 @@
+summary: Автоматическая публикация постов из Baserow в Telegram (Client API + Bot API)
+description: >
+  Находит посты с сегодняшней датой публикации и отправляет их в указанный
+  Telegram канал.
+
+  - Для фото использует Client API (Telethon) с лимитом caption 4096 символов -
+  Для текста использует Bot API - Фильтрует посты по полю "Дата публикации" -
+  Публикует текст из поля "Пост для ТГ" - Добавляет картинку из поля "Итоговый
+  постер" (если есть) - Отправляет в канал из поля "Адрес в Channels" - После
+  публикации меняет статус на "Опубликовано"
+lock: '!inline f/prj_content_forge/publisher/publish_to_telegram.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties: {}
+  required: []

@@ -1,0 +1,42 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/commons_images/search_commons_images.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    entities:
+      type: array
+      description: ''
+      default: null
+      items:
+        type: string
+      originalType: 'string[]'
+    images_per_entity:
+      type: integer
+      description: ''
+      default: 1
+    max_file_size_mb:
+      type: integer
+      description: ''
+      default: 10
+    min_height:
+      type: integer
+      description: ''
+      default: 100
+    min_width:
+      type: integer
+      description: ''
+      default: 100
+    s3_prefix:
+      type: string
+      description: ''
+      default: commons_images
+      originalType: string
+    use_wikidata:
+      type: boolean
+      description: ''
+      default: true
+  required:
+    - entities

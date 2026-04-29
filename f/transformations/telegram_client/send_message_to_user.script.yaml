@@ -1,0 +1,23 @@
+summary: ''
+description: ''
+lock: '!inline f/transformations/telegram_client/send_message_to_user.script.lock'
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties:
+    message:
+      type: string
+      description: ''
+      default: ''
+      originalType: string
+    user_id:
+      type: integer
+      description: ''
+      default: null
+    username:
+      type: string
+      description: ''
+      default: null
+      originalType: string
+  required: []
